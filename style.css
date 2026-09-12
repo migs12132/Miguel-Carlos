@@ -1,0 +1,313 @@
+/* ===========================================================
+   Tokens
+=========================================================== */
+:root {
+  --paper:      #EDEFE7;
+  --paper-dim:  #E2E4D9;
+  --ink:        #1E2420;
+  --ink-soft:   #4A5049;
+  --line:       #CBCFC1;
+  --gold:       #B8873A;
+  --teal:       #2E6B60;
+
+  --font-display: "Newsreader", Georgia, serif;
+  --font-body:    "Manrope", -apple-system, Segoe UI, sans-serif;
+
+  --max-width: 68rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ===========================================================
+   Reset & base
+=========================================================== */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+
+p { margin: 0 0 1rem; max-width: 62ch; }
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: var(--paper-dim);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+a { color: var(--teal); }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+section, header, footer {
+  padding: 3.5rem 1.5rem;
+}
+
+section > *, header > *, footer > * {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section h2 {
+  font-size: 1.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ===========================================================
+   Header
+=========================================================== */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.75rem;
+  font-size: 0.95rem;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+.site-nav a:hover { color: var(--teal); }
+
+/* ===========================================================
+   Hero
+=========================================================== */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.hero-copy { flex: 1 1 26rem; }
+
+.hero-kicker {
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.hero-lede { color: var(--ink-soft); }
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.4rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-primary:hover { background: var(--teal); }
+
+.btn-ghost {
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+.hero-mark {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===========================================================
+   About / Work
+=========================================================== */
+.about, .work, .contact {
+  border-top: 1px solid var(--line);
+}
+
+.work-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 2rem;
+}
+
+.work-item h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.work-item p { color: var(--ink-soft); font-size: 0.97rem; }
+
+/* ===========================================================
+   Logo section
+=========================================================== */
+.logos {
+  border-top: 1px solid var(--line);
+  background: var(--paper-dim);
+}
+
+.logos-intro { color: var(--ink-soft); }
+
+.logo-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.logo-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.logo-card p {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin: 0 auto;
+}
+
+.logo-stage {
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Logo 1: rotated monogram badge --- */
+.logo-monogram {
+  position: relative;
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-monogram-plate {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: rotate(45deg) scale(0.82);
+  border-radius: 8px;
+}
+
+.logo-monogram-plate::after {
+  content: "";
+  position: absolute;
+  inset: 0.35rem;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+}
+
+.logo-monogram-text {
+  position: relative;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: var(--paper);
+  transform: rotate(0deg);
+  letter-spacing: 0.02em;
+}
+
+/* --- Logo 2: skewed signal bars --- */
+.logo-signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.6rem;
+  height: 5rem;
+}
+
+.signal-bar {
+  display: block;
+  width: 1.1rem;
+  height: 4rem;
+  background: var(--teal);
+  transform: skewX(-12deg);
+  border-radius: 2px;
+  transform-origin: bottom;
+}
+
+.signal-bar-1 { transform: skewX(-12deg) scaleY(0.55); background: var(--gold); }
+.signal-bar-2 { transform: skewX(-12deg) scaleY(1); }
+.signal-bar-3 { transform: skewX(-12deg) scaleY(0.75); background: var(--ink); }
+
+/* ===========================================================
+   Contact & Footer
+=========================================================== */
+.contact p { color: var(--ink-soft); }
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+/* ===========================================================
+   Responsive
+=========================================================== */
+@media (max-width: 40rem) {
+  .hero { flex-direction: column-reverse; text-align: left; }
+  .site-nav { gap: 1.1rem; font-size: 0.9rem; }
+}

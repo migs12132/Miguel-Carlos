@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mara Ilagan — Front-End Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="#top" class="wordmark">Miguel Carlos</a>
+    <nav class="site-nav">
+      <a href="#work">Work</a>
+      <a href="#logos">CSS logos</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/" class="nav-link-external" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="hero-kicker">Front-end developer, based in Bacolod</p>
+        <h1>I build interfaces that hold their shape<br>under real content.</h1>
+        <p class="hero-lede">
+          I'm a front-end developer who spends most of her time in HTML, CSS,
+          and just enough JavaScript to make things behave. This page is my
+          working notebook — built by hand, deployed by hand, no template.
+        </p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary">See my work</a>
+          <a href="#logos" class="btn btn-ghost">View the CSS logos</a>
+        </div>
+      </div>
+
+      <div class="hero-mark" aria-hidden="true">
+        <div class="mark-badge">
+          <span class="mark-badge-inner">MI</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About this page</h2>
+      <p>
+        Every element on this site is a plain HTML box — no images were used
+        to build the shapes or logos. Rotation, translation, scaling, and
+        skewing are all done in CSS, styled from a single external
+        stylesheet at <code>css/style.css</code>. The two marks below were
+        made the same way: by transforming ordinary rectangles.
+      </p>
+    </section>
+
+    <section class="work" id="work">
+      <h2>Recent work</h2>
+      <div class="work-list">
+        <article class="work-item">
+          <h3>Barangay records lookup</h3>
+          <p>A small form-heavy tool for looking up local records, built around clear error states and keyboard navigation.</p>
+        </article>
+        <article class="work-item">
+          <h3>Weekend market schedule board</h3>
+          <p>A single page that reads like a printed schedule but updates itself — no framework, just semantic HTML and CSS Grid.</p>
+        </article>
+        <article class="work-item">
+          <h3>Component pattern notes</h3>
+          <p>A personal reference of buttons, forms, and cards, kept so I stop rebuilding the same decisions from scratch.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="logos" id="logos">
+      <h2>Two pure CSS logos</h2>
+      <p class="logos-intro">
+        No SVG, no PNG — every shape below is a styled <code>div</code>.
+      </p>
+
+      <div class="logo-showcase">
+
+        <div class="logo-card">
+          <div class="logo-stage">
+            <div class="logo-monogram" aria-label="MI monogram logo">
+              <div class="logo-monogram-plate"></div>
+              <span class="logo-monogram-text">MI</span>
+            </div>
+          </div>
+          <h3>Monogram badge</h3>
+          <p>A rotated square plate under a straightened initial, built with <code>transform: rotate()</code> on the plate and a counter-rotation on the text.</p>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-stage">
+            <div class="logo-signal" aria-label="Signal mark logo">
+              <span class="signal-bar signal-bar-1"></span>
+              <span class="signal-bar signal-bar-2"></span>
+              <span class="signal-bar signal-bar-3"></span>
+            </div>
+          </div>
+          <h3>Signal mark</h3>
+          <p>Three skewed bars scaled to different heights, standing in for a signal or waveform — built with <code>skew()</code> and <code>scaleY()</code>.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Say hello</h2>
+      <p>
+        The fastest way to reach me is email:
+        <a href="mailto:hello@example.com">hello@example.com</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with plain HTML and CSS. No frameworks were used in this page.</p>
+  </footer>
+
+</body>
+</html>
