@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Task 7.1 - Canvas Art</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f2f4f8; margin: 0; padding: 20px; color: #222; }
+  h1 { text-align: center; margin-bottom: 4px; }
+  p.sub { text-align: center; margin-top: 0; color: #555; }
+  .gallery { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px; }
+  figure { margin: 0; background: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.15); }
+  figcaption { text-align: center; font-size: 14px; margin-top: 8px; font-weight: bold; }
+  canvas { display: block; border: 1px solid #ccc; }
+</style>
+</head>
+<body>
+<h1>Learning Task 7.1: Canvas Art</h1>
+<p class="sub">Each graphic is 200 &times; 200</p>
+<div class="gallery" id="gallery"></div>
+
+<script>
+const gallery = document.getElementById("gallery");
+
+// Creates a 200x200 canvas with a caption and returns its 2D context
+function makeCanvas(title) {
+  const fig = document.createElement("figure");
+  const c = document.createElement("canvas");
+  c.width = 200; c.height = 200;
+  const cap = document.createElement("figcaption");
+  cap.textContent = title;
+  fig.appendChild(c); fig.appendChild(cap);
+  gallery.appendChild(fig);
+  return c.getContext("2d");
+}
+
+// 1. Smiley face (arc, quadraticCurveTo)
+(function () {
+  const ctx = makeCanvas("1. Smiley Face");
+  ctx.fillStyle = "#e3f2fd"; ctx.fillRect(0, 0, 200, 200);
+  ctx.beginPath(); ctx.arc(100, 100, 70, 0, Math.PI * 2);
+  ctx.fillStyle = "#ffeb3b"; ctx.fill();
+  ctx.lineWidth = 4; ctx.strokeStyle = "#f9a825"; ctx.stroke();
+  ctx.fillStyle = "#333";
+  ctx.beginPath(); ctx.arc(75, 80, 8, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(125, 80, 8, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(60, 115);
+  ctx.quadraticCurveTo(100, 165, 140, 115);
+  ctx.lineWidth = 5; ctx.strokeStyle = "#333"; ctx.lineCap = "round"; ctx.stroke();
+})();
+
+// 2. Sunset (createLinearGradient, arc)
+(function () {
+  const ctx = makeCanvas("2. Sunset");
+  const g = ctx.createLinearGradient(0, 0, 0, 200);
+  g.addColorStop(0, "#1a237e"); g.addColorStop(0.5, "#ec407a"); g.addColorStop(1, "#ffb74d");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 200, 200);
+  ctx.beginPath(); ctx.arc(100, 125, 40, Math.PI, 0);
+  ctx.fillStyle = "#fff176"; ctx.fill();
+  ctx.fillStyle = "#1b1b3a"; ctx.fillRect(0, 125, 200, 75);
+  ctx.fillStyle = "rgba(255,241,118,0.4)";
+  ctx.fillRect(70, 140, 60, 4); ctx.fillRect(80, 155, 40, 4); ctx.fillRect(90, 170, 20, 4);
+})();
+
+// 3. Rainbow (concentric arcs, lineWidth)
+(function () {
+  const ctx = makeCanvas("3. Rainbow");
+  ctx.fillStyle = "#b3e5fc"; ctx.fillRect(0, 0, 200, 200);
+  const colors = ["#e53935", "#fb8c00", "#fdd835", "#43a047", "#1e88e5", "#8e24aa"];
+  ctx.lineWidth = 10;
+  colors.forEach((col, i) => {
+    ctx.beginPath(); ctx.arc(100, 150, 80 - i * 10, Math.PI, 0);
+    ctx.strokeStyle = col; ctx.stroke();
+  });
+  ctx.fillStyle = "#fff";
+  [[40, 160], [60, 150], [145, 160], [160, 150]].forEach(([x, y]) => {
+    ctx.beginPath(); ctx.arc(x, y, 14, 0, Math.PI * 2); ctx.fill();
+  });
+})();
+
+// 4. House (fillRect, strokeRect, path triangle)
+(function () {
+  const ctx = makeCanvas("4. House");
+  ctx.fillStyle = "#bbdefb"; ctx.fillRect(0, 0, 200, 200);
+  ctx.fillStyle = "#66bb6a"; ctx.fillRect(0, 150, 200, 50);
+  ctx.fillStyle = "#ffcc80"; ctx.fillRect(45, 90, 110, 70);
+  ctx.lineWidth = 3; ctx.strokeStyle = "#8d6e63"; ctx.strokeRect(45, 90, 110, 70);
+  ctx.beginPath(); ctx.moveTo(35, 92); ctx.lineTo(100, 40); ctx.lineTo(165, 92); ctx.closePath();
+  ctx.fillStyle = "#c62828"; ctx.fill();
+  ctx.fillStyle = "#6d4c41"; ctx.fillRect(88, 120, 24, 40);
+  ctx.fillStyle = "#81d4fa"; ctx.fillRect(58, 105, 22, 22); ctx.fillRect(120, 105, 22, 22);
+  ctx.beginPath(); ctx.arc(170, 35, 16, 0, Math.PI * 2); ctx.fillStyle = "#ffca28"; ctx.fill();
+})();
+
+// 5. Heart (bezierCurveTo)
+(function () {
+  const ctx = makeCanvas("5. Heart");
+  ctx.fillStyle = "#fce4ec"; ctx.fillRect(0, 0, 200, 200);
+  ctx.beginPath();
+  ctx.moveTo(100, 160);
+  ctx.bezierCurveTo(20, 100, 40, 30, 100, 70);
+  ctx.bezierCurveTo(160, 30, 180, 100, 100, 160);
+  ctx.closePath();
+  ctx.fillStyle = "#e91e63"; ctx.fill();
+  ctx.lineWidth = 4; ctx.strokeStyle = "#ad1457"; ctx.stroke();
+})();
+
+// 6. Star (path with a loop)
+(function () {
+  const ctx = makeCanvas("6. Star");
+  ctx.fillStyle = "#1a237e"; ctx.fillRect(0, 0, 200, 200);
+  const cx = 100, cy = 105, outer = 75, inner = 32;
+  ctx.beginPath();
+  for (let i = 0; i < 10; i++) {
+    const r = i % 2 === 0 ? outer : inner;
+    const a = -Math.PI / 2 + i * Math.PI / 5;
+    const x = cx + r * Math.cos(a), y = cy + r * Math.sin(a);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = "#ffd54f"; ctx.fill();
+  ctx.lineWidth = 3; ctx.strokeStyle = "#ff8f00"; ctx.lineJoin = "round"; ctx.stroke();
+})();
+
+// 7. Rotating squares (save, translate, rotate, restore)
+(function () {
+  const ctx = makeCanvas("7. Rotating Squares");
+  ctx.fillStyle = "#212121"; ctx.fillRect(0, 0, 200, 200);
+  ctx.save();
+  ctx.translate(100, 100);
+  for (let i = 0; i < 12; i++) {
+    ctx.rotate(Math.PI / 12);
+    ctx.strokeStyle = "hsl(" + (i * 30) + ", 85%, 60%)";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(-60, -60, 120, 120);
+  }
+  ctx.restore();
+})();
+
+// 8. Glowing ball with text (createRadialGradient, shadow, fillText)
+(function () {
+  const ctx = makeCanvas("8. Ball and Text");
+  ctx.fillStyle = "#e8eaf6"; ctx.fillRect(0, 0, 200, 200);
+  ctx.beginPath(); ctx.ellipse(100, 160, 50, 10, 0, 0, Math.PI * 2);
+  ctx.fillStyle = "rgba(0,0,0,0.2)"; ctx.fill();
+  const g = ctx.createRadialGradient(85, 70, 8, 100, 90, 55);
+  g.addColorStop(0, "#fff"); g.addColorStop(0.4, "#42a5f5"); g.addColorStop(1, "#0d47a1");
+  ctx.beginPath(); ctx.arc(100, 90, 55, 0, Math.PI * 2);
+  ctx.fillStyle = g; ctx.fill();
+  ctx.shadowColor = "rgba(0,0,0,0.5)"; ctx.shadowBlur = 4;
+  ctx.shadowOffsetX = 2; ctx.shadowOffsetY = 2;
+  ctx.font = "bold 22px Arial"; ctx.textAlign = "center";
+  ctx.fillStyle = "#283593"; ctx.fillText("Canvas Art", 100, 190);
+})();
+</script>
+</body>
+</html>
