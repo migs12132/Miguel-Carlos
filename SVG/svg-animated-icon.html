@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Task 6.2 - SVG Animated Icon</title>
+<style>
+  body { margin: 0; padding: 20px; background: #f2f4f8; font-family: Arial, sans-serif; text-align: center; }
+  h1 { font-size: 22px; }
+  svg { border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+</style>
+</head>
+<body>
+<h1>Learning Task 6.2: Animated Planet Icon</h1>
+
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="space" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#1a237e"/>
+      <stop offset="100%" stop-color="#0b0f2e"/>
+    </radialGradient>
+    <radialGradient id="planet" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#ffcc80"/>
+      <stop offset="60%" stop-color="#ff7043"/>
+      <stop offset="100%" stop-color="#bf360c"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Space background -->
+  <rect width="300" height="300" fill="url(#space)"/>
+
+  <!-- Twinkling stars -->
+  <g fill="#fff">
+    <circle cx="40" cy="50" r="2">
+      <animate attributeName="opacity" values="1;0.1;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="250" cy="40" r="2.5">
+      <animate attributeName="opacity" values="0.1;1;0.1" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="270" cy="150" r="1.5">
+      <animate attributeName="opacity" values="1;0.2;1" dur="1.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="30" cy="220" r="2">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="220" cy="265" r="2">
+      <animate attributeName="opacity" values="1;0.1;1" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="90" cy="270" r="1.5">
+      <animate attributeName="opacity" values="0.1;1;0.1" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Orbit paths -->
+  <ellipse cx="150" cy="150" rx="120" ry="45" fill="none" stroke="#7986cb" stroke-width="1" stroke-dasharray="4 4"
+           transform="rotate(-20 150 150)"/>
+  <ellipse cx="150" cy="150" rx="90" ry="90" fill="none" stroke="#7986cb" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+
+  <!-- Planet (gently pulses) -->
+  <circle cx="150" cy="150" r="48" fill="url(#planet)">
+    <animate attributeName="r" values="48;51;48" dur="3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Moon on the round orbit -->
+  <g>
+    <circle cx="240" cy="150" r="9" fill="#eceff1"/>
+    <circle cx="237" cy="147" r="2.5" fill="#b0bec5"/>
+    <animateTransform attributeName="transform" type="rotate"
+                      from="0 150 150" to="360 150 150" dur="6s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- Small ship on the tilted orbit -->
+  <g transform="rotate(-20 150 150)">
+    <g>
+      <polygon points="10,0 -8,-6 -8,6" fill="#4dd0e1"/>
+      <animateMotion dur="8s" repeatCount="indefinite" rotate="auto"
+                     path="M150,105 A120,45 0 0 1 270,150 A120,45 0 0 1 150,195 A120,45 0 0 1 30,150 A120,45 0 0 1 150,105 Z"/>
+    </g>
+  </g>
+
+  <!-- Spinning ring around the planet -->
+  <ellipse cx="150" cy="150" rx="70" ry="14" fill="none" stroke="#ffe082" stroke-width="4" opacity="0.8"
+           transform="rotate(-20 150 150)"/>
+</svg>
+
+</body>
+</html>
